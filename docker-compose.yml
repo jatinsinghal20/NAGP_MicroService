@@ -1,0 +1,53 @@
+version: '3.4'
+
+services:
+  eureka:
+    image: jatinsinghal20/eureka
+    build:
+      context: ./Eureka
+      dockerfile: Dockerfile
+
+    
+  configserver:
+    image: jatinsinghal20/configserver
+    build:
+      context: ./ConfigServer
+      dockerfile: Dockerfile
+
+  gateway:
+    image: jatinsinghal20/gateway
+    build:
+      context: .
+      dockerfile: Gateway/Dockerfile
+    depends_on:
+      - accountsmanagement
+      - servicerequestmanagement
+      - transactionsmanagement
+
+  accountsmanagement:
+    image: jatinsinghal20/accountsmanagement
+    build:
+      context: .
+      dockerfile: AccountsManagement/Dockerfile
+    depends_on:
+      - eureka
+      - configserver
+
+  servicerequestmanagement:
+    image: jatinsinghal20/servicerequestmanagement
+    build:
+      context: .
+      dockerfile: ServiceRequestManagement/Dockerfile
+    depends_on:
+      - eureka
+      - configserver
+
+  transactionsmanagement:
+    image: jatinsinghal20/transactionsmanagement
+    build:
+      context: .
+      dockerfile: TransactionsManagement/Dockerfile
+    depends_on:
+      - eureka
+      - configserver
+

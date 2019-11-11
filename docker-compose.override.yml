@@ -1,0 +1,50 @@
+version: '3.4'
+
+services:
+  eureka:
+    hostname: "eureka"
+    container_name: "eureka"
+    expose: 
+      - "8761"
+    ports:
+      - "8761:8761"
+
+  configserver:
+    hostname: "config-server"
+    container_name: "config-server"
+    expose: 
+      - "8888"
+    ports:
+      - "8888:8888"
+
+  gateway:
+    hostname: "gateway"
+    container_name: "gateway"
+    expose: 
+      - "80"
+    ports:
+      - "7000:80"
+
+  accountsmanagement:
+    hostname: "accountservice"
+    container_name: "accountservice"
+    expose: 
+      - "80"
+    ports:
+      - "7001:80"
+
+  servicerequestmanagement:
+    hostname: "servicerequest"
+    container_name: "servicerequest"
+    expose: 
+      - "80"
+    ports:
+      - "7003:80"
+
+  transactionsmanagement:
+    hostname: "transactionservice"
+    container_name: "transactionservice"
+    expose: 
+      - "80"
+    ports:
+      - "7002:80"

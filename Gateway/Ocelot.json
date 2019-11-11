@@ -1,0 +1,78 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/accounts",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "accountservice",
+      "UpstreamPathTemplate": "/accountservice/accounts",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/accounts/{id}",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "accountservice",
+      "UpstreamPathTemplate": "/accountservice/accounts/{id}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/user/{id}",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "accountservice",
+      "UpstreamPathTemplate": "/accountservice/users/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/user",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "accountservice",
+      "UpstreamPathTemplate": "/accountservice/users",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/transaction/{catchAll}",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "transactionservice",
+      "UpstreamPathTemplate": "/transactionservice/{catchAll}",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/transaction",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "transactionservice",
+      "UpstreamPathTemplate": "/transactionservice",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/service",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "servicerequest",
+      "UpstreamPathTemplate": "/servicerequest/",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/service/{id}",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "servicerequest",
+      "UpstreamPathTemplate": "/servicerequest/{id}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      "Type": "Eureka",
+      "Host": "localhost",
+      "Port": "8761"
+    }
+  }
+}
